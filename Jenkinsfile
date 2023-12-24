@@ -5,9 +5,9 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerhub',userNameVariable:'USERNAME',passwordVariable: 'PASSWORD')])
                 sh """
-                docker login -u $USERNAME -p $PASSWORD
-                docker build -t mostafaabdelkhalek/go-app .
-                docker push mostafaabdelkhalek/go-app  
+                docker login -u ${USERNAME} -p ${PASSWORD}
+                docker build -t mostafaabdelkhalek8/go-app .
+                docker push mostafaabdelkhalek8/go-app  
                 """
             }
         }
