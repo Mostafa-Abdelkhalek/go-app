@@ -1,14 +1,18 @@
 pipeline {
     agent any
-    stages{
-        stage('build app'){
-            steps{
-                withCredentials([usernamePassword(credentialsId: 'dockerhub',userNameVariable:'USERNAME',passwordVariable: 'PASSWORD')])
-                sh """
-                docker login -u ${USERNAME} -p ${PASSWORD}
-                docker build -t mostafaabdelkhalek8/go-app .
-                docker push mostafaabdelkhalek8/go-app  
-                """
+    stages {
+        stage('Build and Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', userNameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    script {
+                        // Log in to Docker Hub
+                        sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+
+                        // Build and push the Docker image
+                        sh "docker build -t mostafaabdelkhalek8/go-app ."
+                        sh "docker push mostafaabdelkhalek8/go-app"
+                    }
+                }
             }
         }
     }
