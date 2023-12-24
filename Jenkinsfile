@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build and Push Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', userNameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
                     script {
                         // Log in to Docker Hub
                         sh "docker login -u ${USERNAME} -p ${PASSWORD}"
