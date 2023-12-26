@@ -8,8 +8,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    kubectl apply -f deployment.yml 
-                    kubectl apply -f svc.yml 
+                    kubectl apply -f /home/tata/Hands-on/go-lang/go-app/k8s/deployment.yml
+                    kubectl apply -f /home/tata/Hands-on/go-lang/go-app/k8s/svc.yml 
                     """
                     sleep (time: 120, units: "SECONDS")
                 }
@@ -20,7 +20,7 @@ pipeline {
                 script {
                     sh """
                     kubectl get svc | grep LoadBalancer
-                    kubectl describe svc go-app-svc | grep 'LoadBalancer Ingress'
+                    kubectl describe svc go-app-svc | grep 'No Ingress'
                     kubectl describe mongo-db-svc | grep 'LoadBalancer Ingress'
                     """
                 }
