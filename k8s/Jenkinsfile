@@ -8,8 +8,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    kubectl apply -f /home/tata/Hands-on/go-lang/go-app/k8s/deployment.yml
-                    kubectl apply -f /home/tata/Hands-on/go-lang/go-app/k8s/svc.yml 
+                    kubectl apply -f /go-app/k8s/deployment.yml
+                    kubectl apply -f /go-app/k8s/svc.yml 
                     """
                     sleep (time: 120, units: "SECONDS")
                 }
