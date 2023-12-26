@@ -3,7 +3,7 @@ kind: Service
 metadata: 
   name: go-app-svc 
 spec: 
-  type: NodePort 
+  type: LoadBalancer 
   ports: 
     - name: go-app 
       port: 8050
@@ -19,7 +19,7 @@ metadata:
   labels:
     app: go-app  # Corrected syntax here
 spec:
-  type: NodePort
+  type: LoadBalancer 
   ports:
     - name: go-app
       port: 27017
