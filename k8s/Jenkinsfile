@@ -1,0 +1,17 @@
+pipeline {
+    agent ('slave')
+
+    stages{
+        stage('delpoy app'){
+            steps{
+                script{
+                    sh """
+                    kubectl apply -f deployment.yml 
+                    kubectl apply -f svc.yml 
+                    """                   
+                }
+            }
+        }
+
+    }
+}
