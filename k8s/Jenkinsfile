@@ -1,13 +1,27 @@
 pipeline {
-    agent { label 'slave' }
+    agent {
+        label 'slave'
+    }
 
     stages {
-        stage('deploy app') {
+        stage('Deploy App') {
             steps {
                 script {
                     sh """
-                    kubectl apply -f deployment.yml
-                    kubectl apply -f svc.yml
+                    kubectl apply -f deployment.yml 
+                    kubectl apply -f svc.yml 
+                    """
+                    sleep (time: 120, units: "SECONDS")
+                }
+            }
+        }
+        stage('sleep untill lb getting ready ') {
+            steps {
+                script {
+                    sh """
+                    kubectl get svc | grep LoadBalancer
+                    kubectl describe svc go-app-svc | grep 'LoadBalancer Ingress'
+                    kubectl describe mongo-db-svc | grep 'LoadBalancer Ingress'
                     """
                 }
             }
