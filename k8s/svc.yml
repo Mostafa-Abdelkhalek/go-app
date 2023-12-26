@@ -1,0 +1,30 @@
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: go-app-svc 
+spec: 
+  type: NodePort 
+  ports: 
+    - name: go-app 
+      port: 8050
+      targetPort: 8050
+      protocol : TCP 
+  selector:
+    app: go-app
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-db-svc
+  labels:
+    app: go-app  # Corrected syntax here
+spec:
+  type: NodePort
+  ports:
+    - name: go-app
+      port: 27017
+      targetPort: 27017
+      protocol: TCP
+  selector:
+    app: go-app
+
