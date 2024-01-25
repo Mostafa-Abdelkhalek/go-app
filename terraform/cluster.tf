@@ -37,7 +37,6 @@ resource "google_container_node_pool" "primary1-node" {
     preemptible  = true
     machine_type = "e2-medium"
 
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     service_account = google_service_account.cluster-service1.email
     oauth_scopes    = ["https://www.googleapis.com/auth/cloud-platform"]
   }

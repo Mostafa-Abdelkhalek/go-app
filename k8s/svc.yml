@@ -17,9 +17,9 @@ kind: Service
 metadata:
   name: mongo-db-svc
   labels:
-    app: go-app  # Corrected syntax here
+    app: go-app  
 spec:
-  type: LoadBalancer 
+  type: ClusterIP
   ports:
     - name: go-app
       port: 27017
